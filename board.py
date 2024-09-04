@@ -4,9 +4,6 @@ class Board:
     def __init__(self):
         self.layout:List[List[int]] = []
 
-    def initialize(self):
-        pass
-
     def display(self):
         pass
 

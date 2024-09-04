@@ -7,8 +7,8 @@ class Game:
         self.player = Player()
 
     def start_game(self):
-        self.board.initialize()
         self.player.get_player()
+        self.board.get_board()
 
     def make_move(self, starting_pos, ending_pos):
         if self.board.is_valid_move(starting_pos, ending_pos):
@@ -17,7 +17,13 @@ class Game:
             print("Invalid move")
 
     def is_won(self) -> bool:
-        return self.board.is_solved()
+        if self.board.is_solved():
+            if len(self.board.layout) == 1:
+                return True
+            return False
+
 
     def is_lost(self) -> bool:
-        pass
+        if self.is_won() == False:
+            return True
+        return False

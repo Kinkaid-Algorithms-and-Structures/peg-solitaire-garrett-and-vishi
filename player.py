@@ -1,6 +1,5 @@
 from typing import Tuple
 
-
 class Player:
     def __init__(self):
         self.name: str = "player"
