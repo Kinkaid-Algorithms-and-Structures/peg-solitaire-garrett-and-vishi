@@ -7,8 +7,9 @@ class Game:
         self.player = Player()
 
     def start_game(self):
-        self.player.get_player()
-        self.board.get_board()
+        empty_r = input("Which row is the hole you want to leave empty?")
+        empty_c = input("Which column is the hole you want to leave empty?")
+        self.board.set(empty_r, empty_c)
 
     def make_move(self, starting_pos, ending_pos):
         if self.board.is_valid_move(starting_pos, ending_pos):
@@ -16,14 +17,11 @@ class Game:
         else:
             print("Invalid move")
 
-    def is_won(self) -> bool:
-        if self.board.is_solved():
-            if len(self.board.layout) == 1:
-                return True
-            return False
-
-
-    def is_lost(self) -> bool:
-        if self.is_won() == False:
-            return True
-        return False
+    def play(self):
+        self.start_game()
+        while self.board.game_over() == "continue":
+            self.player.make_move(self)
+        if self.game.board.game_over() == "win":
+            print("you won!")
+        elif self.game.board.game_over() == "lose":
+            print("you lost!")
