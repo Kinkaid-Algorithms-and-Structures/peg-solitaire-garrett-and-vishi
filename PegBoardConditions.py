@@ -11,7 +11,7 @@ def make_board(peg_pos):
 
 def if_possible(start_pos, end_pos, peg_pos):
     if peg_pos[end_pos] == "o":
-        if start_pos[]
+        pass
     else:
         return False
 
