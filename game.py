@@ -28,7 +28,7 @@ class Game:
     def play(self):
         self.start_game()
         while self.board.is_game_over() == "continue":
-            self.player.make_move(self)
+            self.player.get_move()
         if self.board.is_game_over() == "win":
             print("you won!")
         elif self.board.is_game_over() == "lose":
