@@ -51,7 +51,7 @@ class Board:
             self.layout[middle_y][middle_x] = "o"
             self.display()
 
-    def game_over(self) -> str:
+    def is_game_over(self) -> str:
         peg_pos = 0
         for pos_y in range(5):
             for pos_x in range(pos_y + 1):
