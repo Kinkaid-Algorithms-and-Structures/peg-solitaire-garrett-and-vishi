@@ -2,7 +2,12 @@ from typing import List, Tuple
 
 class Board:
     def __init__(self):
-        self.layout:List[List[str]] = [["o"],["@","@"],["@","@","@"],["@","@","@","@"],["@","@","@","@","@"]]
+        self.layout:List[List[str]] = [["@"],["@","@"],["@","@","@"],["@","@","@","@"],["@","@","@","@","@"]]
+
+    def set(self, pos_x, pos_y):
+        pos_x = int(pos_x)
+        pos_y = int(pos_y)
+        self.layout[pos_y][pos_x] = "o"
 
     def display(self):
         line = ""
@@ -16,6 +21,7 @@ class Board:
             line = ""
 
     def is_valid_move(self, starting_pos: Tuple[int, int], ending_pos: Tuple[int, int]) -> bool:
+
         if (ending_pos[0] < 0 or ending_pos[1] < 0 or
                 starting_pos[0] < 0 or starting_pos[1] < 0 or
                 starting_pos[0] > 4 or ending_pos[0] > 4 or
@@ -43,8 +49,9 @@ class Board:
             middle_y = (starting_pos[0] + ending_pos[0])//2
             middle_x = (starting_pos[1] + ending_pos[1])//2
             self.layout[middle_y][middle_x] = "o"
+            self.display()
 
-    def is_game_over(self) -> str:
+    def game_over(self) -> str:
         peg_pos = 0
         for pos_y in range(5):
             for pos_x in range(pos_y + 1):
@@ -52,7 +59,7 @@ class Board:
                     peg_pos += 1
                     for end_pos_y in range(-2,4,2):
                         for end_pos_x in range(-2,4,2):
-                            if self.is_valid_move((pos_y,pos_x),(end_pos_y,end_pos_x)):
+                            if self.is_valid_move((pos_y,pos_x),(pos_y + end_pos_y, pos_x +end_pos_x)):
                                 return "continue"
 
         if peg_pos == 1:
@@ -60,17 +67,3 @@ class Board:
         else:
             return "lose"
 
-
-board = Board()
-board.display()
-board.move_peg((2,0),(0,0))
-board.move_peg((2,2),(2,0))
-board.move_peg((3,0),(1,0))
-board.move_peg((0,0),(2,2))
-board.move_peg((3,3),(1,1))
-board.move_peg((4,1),(2,1))
-board.move_peg((1,1),(3,1))
-board.move_peg((4,3),(4,1))
-board.move_peg((4,1),(2,1))
-board.display()
-print(board.is_game_over())
