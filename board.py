@@ -1,13 +1,8 @@
-from typing import List, Tuple
+from typing import *
 
 class Board:
     def __init__(self):
         self.layout:List[List[str]] = [["@"],["@","@"],["@","@","@"],["@","@","@","@"],["@","@","@","@","@"]]
-
-    def set(self, pos_x, pos_y):
-        pos_x = int(pos_x)
-        pos_y = int(pos_y)
-        self.layout[pos_y][pos_x] = "o"
 
     def display(self):
         line = ""
@@ -50,6 +45,9 @@ class Board:
             middle_x = (starting_pos[1] + ending_pos[1])//2
             self.layout[middle_y][middle_x] = "o"
             self.display()
+        else:
+            print("Invalid move")
+
 
     def is_game_over(self) -> str:
         peg_pos = 0
@@ -66,4 +64,3 @@ class Board:
             return "win"
         else:
             return "lose"
-
