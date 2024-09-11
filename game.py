@@ -13,7 +13,7 @@ class Game:
             try:
                 empty_r = int(input("Which row is the hole you want to leave empty?"))
                 empty_c = int(input("Which column is the hole you want to leave empty?"))
-                if 0<=empty_r<5 and 0<=empty_c<5:
+                if 0<=empty_r<5 and 0<=empty_c<=empty_r:
                     self.board.layout[empty_r][empty_c] = "o"
                     break
                 else:
